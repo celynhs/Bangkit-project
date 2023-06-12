@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">BeliBijak</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="title_home">Home</string>
+    <string name="title_cart">Cart</string>
+    <string name="title_profile">Profile</string>
+    <string name="tx_login">Login</string>
+    <string name="tx_register">Register</string>
+    <string name="tx_welcome">Welcome</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="forgot_password">Forgot Password</string>
+    <string name="add_item">add Item</string>
 </resources>
