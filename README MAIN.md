@@ -242,20 +242,20 @@ As the development has finished, these are the points conducted from the plan & 
   
 4. Fourth week
 
-  a. API testing
+   a. API testing
   
-  b. Mobile Application Development
+   b. Mobile Application Development
   
-  c. 
+   c. 
   
 
 5. Fifth week 
 
-  a. Application Integration
+   a. Application Integration
   
-  b. Make project brief and documentations
+   b. Make project brief and documentations
   
-  c. Prepare go-to market proposal and project presentation.
+   c. Prepare go-to market proposal and project presentation.
 
 <br>
 
