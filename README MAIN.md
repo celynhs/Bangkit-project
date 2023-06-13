@@ -23,11 +23,7 @@
 
 # About BeBi
 
-**BeBi** is an Indonesian-language-based website with machine-learning powered website, made using TensorFlow and Flask.
-
-StarWord helps Dicoding Indonesia by validating feedback from ILT (Instructor-Led Training). Each of the feedback fed into the system will be rendered valid or not based on 3 factors: its relevancy to ILT, its sentiment, and its quantitative rating.
-
-This project is developed by 5 developers for the company-capstone project of **Bangkit Academy 2022 by Google, GoTo, Traveloka** of **MBKM 2022** from **Machine Learning (ML) and Cloud Computing (CC)** specialization path with the team ID **C22-FV01**.
+**BeBi** is a mobile app that provides assitance on grocery shopping for our user. BeBi offers various grocery bundles with the best price and quality based on users preferences and budget. The main feature of our app is the monthly bundle feature which provides user with personalized top grocery products recommendations so users can stock up on their favorite/usual monthly groceries without going over budget. Overall, BeBi is a useful app to help user in acquiring all the grocery products they need and want with the bes       
 
 <br>
 
@@ -325,13 +321,10 @@ Below are the tools used for deployment, and its detail of monthly pricing.
 
 - [Flask](https://flask.palletsprojects.com/en/2.1.x/) & [Flask Restful](https://flask-restful.readthedocs.io/en/latest/)
 - [TensorFlow](https://tensorflow.org/)
-- [SQLAlchemy](https://www.sqlalchemy.org/)
-- [Requests](https://requests.readthedocs.io/en/latest/)
 - [Pandas](https://pandas.pydata.org/docs/)
 - [NumPy](https://numpy.org/doc/stable/)
 - [Scikit-Learn](https://scikit-learn.org/stable/)
-- [Datetime](https://docs.python.org/3/library/datetime.html)
-- [Bootstrap](https://getbootstrap.com/)
+- []
 
 <br>
 
@@ -339,10 +332,12 @@ Below are the tools used for deployment, and its detail of monthly pricing.
 
 ## 10. Contributing developers
 
-**Bangkit 2022 | Company-Capstone Product | C22-FV01 Team Members**:
+**Bangkit 2023 | Product Based-Capstone| C23-PS069 Team Members**:
 
-- (ML) M7227F2096 - Ivan Budianto
-- (ML) M2150F1654 - Jestine Siewij
-- (ML) M7312H2694 - Agus Wahyudi
-- (ML) M2299F2566 - Khamidah Ahmad Syauqi
-- (CC) C2193F1826 - Mochamad Nahrul Hayawan
+- M151DSX0106 – Arya Sujiwakusuma – Brawijaya University - [Active]
+- M151DSY0104 – Jocelin Helsa – Brawijaya University - [Active]
+- M097DKX3881 – Guardian Theo Andritya – STIKI Malang - [Active]
+- C151DSY1611 – Ina Khoirunisa – Brawijaya University - [Active]
+- C166DKY4154 – Maharani Swastika – Diponegoro University - [Active]
+- A097DSX2101 – Achmad Sulton – STIKI Malang - [Active]
+
