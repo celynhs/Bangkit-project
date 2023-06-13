@@ -7,23 +7,21 @@
    1. [Background](#background)
    2. [Goal & Aim](#goal)
    3. [How to Download and Host](#downloadandhost)
-      1. [Run StarWord Web on local](#local)
+      1. [Run BeBi recommender system on local](#local)
       2. [Deploy on Google Cloud Platform](#gcp)
       3. [Deploy on Heroku](#heroku)
-   4. [How Does the Inference Work? #1 - Relevant or Irrelevant](#inference1)
-   5. [How Does the Inference Work? #1 - Positive, Negative, Advice](#inference2)
-   6. [Plans & Realization](#plans)
-   7. [Repository & Branch](#repo)
-   8. [Google Cloud Tools and Monthly Pricing](#pricing)
-   9. [Bibliography](#bibliography)
-   10. [Contributing Developers](#dev)
+   4. [Plans & Realization](#plans)
+   5. [Repository & Branch](#repo)
+   6. [Google Cloud Tools and Monthly Pricing](#pricing)
+   7. [Bibliography](#bibliography)
+   8. [Contributing Developers](#dev)
 
 <br>
 <a name="about"></a>
 
 # About BeBi
 
-**BeBi** is a mobile app that provides assitance on grocery shopping for our user. BeBi offers various grocery bundles with the best price and quality based on users preferences and budget. The main feature of our app is the monthly bundle feature which provides user with personalized top grocery products recommendations so users can stock up on their favorite/usual monthly groceries without going over budget. Overall, BeBi is a useful app to help user in acquiring all the grocery products they need and want with the bes       
+**BeBi** is a mobile app that provides assitance on grocery shopping. BeBi offers various grocery bundles with the best price and quality for our users based on their preferences and budget. The main feature of our app is the monthly bundle feature which provides users with personalized top grocery products recommendations so they can stock up on their favorite/usual monthly groceries without going over budget. Overall, BeBi is a useful app that can help user in making better purchasing decisions when grocery shopping and getting good deals on all the grocery products they need within budget. By using our app, user can save time and money while developing a more sustainable lifestyle by reducing wasteful purchases.           
 
 <br>
 
@@ -31,9 +29,9 @@
 
 ## 1. Background
 
-All modern user-based services, including Dicoding, use feedback from users to improve further as metrics. It is not rare that this approach has flaws, especially in the process of data acquisition. 15% of the users give mismatched quantitative (star-based) and qualitative (essay field) feedback, making it harder to get an overview of the potential improvements and new strategies for the company to improve as the assessment is clouded by the mismatched data.
+Many people spend a lot of time browsing to find good deals on products and often end up wasting money due to over buying or making wrong purchases. This becomes a great issue during grocery shopping since grocery products are perishable. We came up with this project to solve these problems by making an app that helps manage users’ grocery shopping activities. Considering that people do grocery shopping routinely and food waste is a huge concern these days, we believe that our app can be useful to save users’ money and time while promoting a sustainable lifestyle by reducing waste. 
 
-Tackling this problem, an API is developed to help service providers to validate all of their user's feedback results, thus leading to the fully-accurate data-driven improvement. Specifically, this API will take an input of a JSON dictionary pair(s) of quantitative and qualitative feedback to be classified. This dictionary will be broken down into each pair of their respective ratings. If both the quantitative and the sentiment of the qualitative feedback have a “Positive” label, then this feedback will be considered valid and vice-versa. The output of this process will be a JSON dictionary for each of the input pairs, which can be consumed through an API link to be utilized for end-users through a website, or a mobile application.
+We also consider that for busy people like working moms , grocery shopping might be a necessary but tedious task to be done. Therefore, we offer monthly grocery bundles which consists of top grocery products personalized for each users based on their budget and preferences. By using this app, our user can save time and easily acquire their monthly groceries within budget.         
 
 <br>
 
@@ -41,8 +39,8 @@ Tackling this problem, an API is developed to help service providers to validate
 
 ## 2. Goal & Aim
 
-- This website aims to help Dicoding to validate the feedback collected in ILT sessions. StarWord will help Dicoding by fetching the label of whether the feedback is relevant to ILT and predicting its sentiment. This result will be compared to the star given by the user.
-- StarWord has a feature to help the admin validate the feedbacks per batch, and has 2 views, which are for admin to manipulate the ILT sessions and feedback, and for users to input the feedback for ILT sessions.
+- This app aims to help customers in their monthly grocery stock-up by acquiring all the grocery products they need with the best price and ratings within a set budget. 
+- BeBi has a built-in recommender system which generate/offers personalized grocery product bundles for users based on their preferences and historical purchases.     
 
 <br>
 
@@ -206,78 +204,54 @@ $ git push heroku master
 
 <br>
 
-<a name="inference1"></a>
-
-## 4. How Does The Inference Work? #1 - Relevant Irrelevant
-
-1. From the web page, grab user's input such as **name**, **email**, **leaning path**, **session name**, **rating**, and **feedback**. Before going to the next step, it is crucial to make sure that the **session name** input is a valid name. if **session name** is invalid, the relust will be `Nama sesi ILT tersebut tidak tersedia`.
-
-2. Check whether the **feedback** is relevant or not by calling `predict_relevant` function which contains a `check_positive_or_not` function. The mentioned function will return true if the feedback is in "positive_review_indicator" list, false otherwise. If it is true, return it as a **positive feedback**. Elseways, call the `clean_data` function to remove unwanted characters after lowering it.
-
-3. Clean the stop words from the **feedback** string by using the `remove_stopwords` function. This function will load the "**stopword_Bahasa.csv**" file which contains stop words in Indonesian and delete every stop word in the **feedback** string respectively. Perform manual checking once more by utilizing the `check_positive_or_not` function.
-
-4. Tokenize the **feedback** by using the `tokenize_relevant` function. The function will load the "**tokenizer_relevant.pickle**" which contains the tokenizer object and make the **feedback** string into sequences by using the `texts_to_sequences` method. Finally, call the `pad_sequences` function from the `TensorFlow` library to make the pads sequences of the **feedback** the same length, then return the padded sequence.
-
-5. Load the model from the 'model_relevant.h5' file which is in the folder "packages/model/model_sentiment/model_relevant.h5" using the `load_model` function with`TensorFlow` library.
-
-6. Use the model loaded previously to predict the relevance of the **feedback** by using the `predict` method and set the padded sequence as parameters. The result is a float with the range 0 to 1. However, to predict sentiment later, the result of relevance prediction has to be either 0 (irrelevant) or 1 (relevant). Therefore, the returned result will be rounded to 0 or 1.
-
-<br>
-
-<a name="inference2"></a>
-
-## 5. How Does The Inference Work? #2 - Positive, Negative, Advice
-
-1. From the web page, grab user's input such as **name**, **email**, **leaning path**, **session name**, **rating**, and **feedback**. Before validation make sure the **session name** input is a valid name. if **session name** is invalid, the relust will be `Nama sesi ILT tersebut tidak tersedia`.
-
-2. Check the sentiment by using the `predict_sentiment` function, where the parameter "relevant" will be checked whether its value is 0 or not, and returned as `None` if it is. Otherwise, the **feedback** will be further checked if it is in "positive_review_indicator" list by using the `check_positive_or_not` function. It will return 1 (which indicates the **feedback** is positive) if returned True. Elseways, call the `clean_data` function to remove unwanted characters and punctuation after lowering it.
-
-3. Clean the stop words from the **feedback** string by using the `remove_stopwords` function. This function will load the "**stopword_Bahasa.csv**" file which contains stop words in Indonesian and delete every stop word in the **feedback** string respectively. Perform manual checking once more by utilizing the `check_positive_or_not` function.
-
-4. Tokenize the **feedback** by using the `tokenize_relevant` function. The function will load the "**tokenizer_relevant.pickle**" which contains the tokenizer object and make the **feedback** string into sequences by using the `texts_to_sequences` method. Finally, call the `pad_sequences` function from the `TensorFlow` library to make the pads sequences of the **feedback** the same length, then return the padded sequence.
-
-5. Load the model from the 'model_relevant.h5' file which is in the folder "packages/model/model_sentiment/model_sentiment.h5" using the `load_model` function with`TensorFlow` library.
-
-6. Use the model loaded previously to predict the relevance of the **feedback** by using the `predict` method and set the padded sequence as parameters. The result returned is an array of the model's confidence of each label (array of 3 values of classes available for *positive*, *negative*, and *advice*). From the array, the index of maximum value is fetched using `argmax` method from `NumPy` library.
-
-<br>
-
 <a name="plans"></a>
-
-## 6. Plans & Realization
+## 4. Plans & Realization
 
 The development plan of this project can be seen in the Gantt Chart in the picture provided or [for more information can click here to view](https://bit.ly/C22FV01-ProjectSchedule)
 <img src="https://github.com/Yousei-kun/StarWord-NLP-FeedbackValidator/blob/ml-development/image/gann_chart.png" width="950" />
 
 As the development has finished, these are the points conducted from the plan & realization:
 
-- First week
+1. First week
 
-  This week is for the project planning, as well as for the additional datasets since the real given datasets are insufficient and include processes in dataset cleaning, view templating, dataset labeling, and finalization. Meanwhile, the front-end is developed is constructed parallelly.
+   a. Project planning (break down tasks and discussed how we should complete this project)
+   b. User research and analysis (surveys to optimize user's experience) 
+   c. Creating MVP (figma) for the UI design.
+   d. Data gathering & Data Exploration/Analysis
 
-- Second week
+2. Second week
 
-  This week is focusing on model development including the model tuning for relevant labels and continuing to sentiment labels. Therefore, the second week is spent on the model development and its completion to get the best fit model.
+   a. Data preparation/preprocessing
+   b. ML model development (create 2 recommender system models, data training, and test/evaluate the model)
+   c. Continue with designing the UI for the mobile app 
+   d. Create database API. 
 
-- Third week
+3. Third week
 
-  This week is for deployment including API integration, hosting process and pipeline production for StarWord to be able to be used for the users. The deployment used Flask as the main framework and the hosting process involved Heroku as the host.
+   a. Combining 2 recommender system & process the result of both to create a hybrid recommender system which generate top products recommendations 
+   b. Deploying the ML model & Create APIs 
+   c. 
+  
+4. Fourth week
 
-- Fourth week
+  a. API testing
+  b. Mobile Application Development
+  c. 
+  
 
-  This week is for project testing and finalization. There was a mentoring session conducted within this week which resulted in wide range of improvements, including front-end, additional dataset, and re-training to develop better model.
+5. Fifth week 
 
-- The rest of the weeks
-
-  These weeks are used to make the project brief, documentation. Moreover, preparation for the presentation of the project is produced within these periods.
+  a. Application Integration
+  b. Make project brief and documentations
+  c. Prepare go-to market proposal and project presentation.
 
 <br>
 
 <a name="repo"></a>
 
-## 7. Repository & Branch
+## 5. Repository & Branch
 
-The **StarWord Repository** is divided into **3 branches** (including master). Below is the explanation:
+The **BeBi Repository** is divided into **3 branches** (including master). Below is the explanation:
 
 - **API Development Branch** (cc-development)
 
@@ -299,7 +273,7 @@ The **StarWord Repository** is divided into **3 branches** (including master). B
 
 <a name="pricing"></a>
 
-## 8. Google Cloud Tools and Monthly Pricing
+## 6. Google Cloud Tools and Monthly Pricing
 
 Below are the tools used for deployment, and its detail of monthly pricing.
 
@@ -315,7 +289,7 @@ Below are the tools used for deployment, and its detail of monthly pricing.
 
 <a name="bibliography"></a>
 
-## 9. Bibliography
+## 7. Bibliography
 
 ### A. Framework, Library, and external repository/API used:
 
@@ -330,7 +304,7 @@ Below are the tools used for deployment, and its detail of monthly pricing.
 
 <a name="dev"></a>
 
-## 10. Contributing developers
+## 8. Contributing developers
 
 **Bangkit 2023 | Product Based-Capstone| C23-PS069 Team Members**:
 
