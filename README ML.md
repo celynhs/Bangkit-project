@@ -2,10 +2,10 @@
 
 
 ### Summary
-StarWord is a model to classify the **relevant** and **sentiment** of user's input to get the relevant or irrelevant and including negative, positive, or advice sentiment. By using this model, user feedback is used to improve further as metrics from relevant and sentiment that feedback is needed.
+To optimize user's experience when using our service (BeBi app), we made a recommender system model to offer the best grocery products bundle based on the user's budget and preferences. Looking at users' historical transactions and product features, our recommender system will generate the top 10 items with the best price, quality, and ratings for the user. The model will also consider other users evaluations and ratings on each product to improve its recommendations for all users. By utilizing this model, we can give personalized recommendations for each user and assist them in making better purchase decisions when grocery shopping. 
 
 This repository mainly consists of 2 files:
-1. `tf_native_modelling_relevant.ipynb` that to check and process the 0 (irrelevant) or 1 (relevant), if the label is relevant then will be processed into sentiment
+1. `BeBi_(Beli_Bijak).ipynb` --> for 
 3. `tf_native_modelling_sentiment.ipynb` that for further processing of the relevant labels to process included in sentiment 0 (negative), 1 (positive), and 2 (advice)
 
 ## 1. tf_native_modelling_relevant.ipynb
