@@ -215,34 +215,46 @@ As the development has finished, these are the points conducted from the plan & 
 1. First week
 
    a. Project planning (break down tasks and discussed how we should complete this project)
+   
    b. User research and analysis (surveys to optimize user's experience) 
+   
    c. Creating MVP (figma) for the UI design.
+   
    d. Data gathering & Data Exploration/Analysis
 
 2. Second week
 
    a. Data preparation/preprocessing
+   
    b. ML model development (create 2 recommender system models, data training, and test/evaluate the model)
+   
    c. Continue with designing the UI for the mobile app 
+   
    d. Create database API. 
 
 3. Third week
 
    a. Combining 2 recommender system & process the result of both to create a hybrid recommender system which generate top products recommendations 
+   
    b. Deploying the ML model & Create APIs 
+   
    c. 
   
 4. Fourth week
 
   a. API testing
+  
   b. Mobile Application Development
+  
   c. 
   
 
 5. Fifth week 
 
   a. Application Integration
+  
   b. Make project brief and documentations
+  
   c. Prepare go-to market proposal and project presentation.
 
 <br>
