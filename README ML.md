@@ -38,4 +38,10 @@ This repository mainly consists of 2 files:
 1. Neural Collaborative Filtering Model : we calculate RMSE of the test set prediction to evaluate the performance of the model. From this , we get **0.0252** RMSE value which can be considered good for value in 0 to 1 range.  
 2. Content Based Filtering Model : we calculate MSE and MAE of the test set prediction to evaluate the performance of the model. From this , we get **0.0247** MSE value and **0.1113** MAE value which can be considered good for value in 0 to 1 range.        
 
-
+## 2. Deployment_for_CC_BeBi_(Beli_Bijak).ipynb.ipynb
+### Functions
+1. collaborative_filtering_model : to get the result from NCF model and process the result to generate top 10 recommendations data which contain the product id, product name, discount price, category, and its predicted ratings from a specific user   
+2. content_based_model : to get the result from content based filtering model and process the result to generate top 10 recommendations data which contain the product id, product name, discount price, category, and its predicted ratings from a specific user
+3. final_dataset : to combine the top 10 recommendations from both models. this function will generate a dataframe of the top 20 product ids along with its predicted ratings from collaborative and content based model (clf_ratings and cbf_ratings). 
+4. hybrid_recommend : process the combined dataframe generated from final_dataset to get the final recommendations based on the weighted average predicted ratings with total cost below the budget parameter.
+5. get_recommendations: to give the final recommendations to user based on the user id and budget. this function is added as an API endpoint for recommendations.
