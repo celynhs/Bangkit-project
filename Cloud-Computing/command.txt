@@ -1,0 +1,3 @@
+docker build -t gcr.io/bebi-388306/bebi-ml .
+docker push gcr.io/bebi-388306/bebi-ml
+gcloud run deploy bebi-ml --image=gcr.io/bebi-388306/bebi-ml --region=asia-southeast2 --platform=managed --allow-unauthenticated

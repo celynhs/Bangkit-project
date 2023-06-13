@@ -1,0 +1,22 @@
+steps:
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      - 'build'
+      - '-t'
+      - 'gcr.io/bebi-388306/bebi-ml'
+      - '.'
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      - 'push'
+      - 'gcr.io/bebi-388306/bebi-ml'
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args:
+      - 'run'
+      - 'deploy'
+      - 'bebi-ml-service'
+      - '--image=gcr.io/bebi-388306/bebi-ml'
+      - '--region=asia-southeast2'
+      - '--platform=managed'
+      - '--allow-unauthenticated'
+options:
+  logging: CLOUD_LOGGING_ONLY
