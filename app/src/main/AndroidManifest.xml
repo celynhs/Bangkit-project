@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -13,8 +14,9 @@
         android:theme="@style/Theme.BeliBijak"
         tools:targetApi="31">
         <activity
-            android:name=".ui.auth.AuthActivity"
-            android:exported="true">
+            android:name=".ui.SplashActivity"
+            android:exported="true"
+            android:theme="@style/Theme.BeliBijak.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -22,11 +24,25 @@
             </intent-filter>
         </activity>
         <activity
+
+            android:name=".ui.auth.register.RegisterActivity"
+            android:exported="false"
+            android:theme="@style/Theme.BeliBijak.NoActionBar"/>
+        <activity
+            android:name=".ui.detail.DetailActivity"
+            android:exported="false"
+            android:theme="@style/Theme.BeliBijak.NoActionBar" />
+        <activity
+            android:name=".ui.auth.AuthActivity"
+            android:exported="false"/>
+
+        <activity
             android:name=".MainActivity"
             android:exported="false" />
         <activity
             android:name=".ui.auth.LoginActivity"
-            android:exported="false"/>
+            android:exported="false"
+            android:theme="@style/Theme.BeliBijak.NoActionBar"/>
     </application>
 
 </manifest>

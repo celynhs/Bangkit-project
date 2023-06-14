@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_home">
+    app:startDestination="@+id/navigation_cart">
 
     <fragment
         android:id="@+id/navigation_home"
@@ -16,6 +16,12 @@
         android:name="com.sulton.belibijak.ui.cart.CartFragment"
         android:label="@string/title_cart"
         tools:layout="@layout/fragment_cart" />
+
+    <fragment
+        android:id="@+id/navigation_deliver"
+        android:name="com.sulton.belibijak.ui.delivery.DeliveryFragment"
+        android:label="@string/deliver"
+        tools:layout="@layout/fragment_delivery"/>
 
     <fragment
         android:id="@+id/navigation_profile"

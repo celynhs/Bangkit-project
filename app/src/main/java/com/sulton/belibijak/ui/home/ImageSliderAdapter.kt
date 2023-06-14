@@ -16,6 +16,8 @@ class ImageSliderAdapter(private val list: List<slideData>) : RecyclerView.Adapt
                     .load(data.imgUrl)
                     .into(imageView3)
             }
+            binding.tvTittleCr.text = data.title
+            binding.tvDescCr.text = data.desc
         }
     }
 
