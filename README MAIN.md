@@ -285,6 +285,11 @@ The **BeBi Repository** consisted of:
 
   The folder has python notebook file which contain the code for developing the hybrid recommender system from collaborative filtering and content based filtering models. It has a .py file which contain the code for  ML model deployment (API endpoint for giving the recommendations). It also contain 2 model files (.h5 format) that has been downloaded from the python notebook, clean dataset of products and transactions that is used for the training, and requirement.txt which contain all the packages and its required version to run the model.    
 
+- **Main Branch files**
+  This repository mainly consist of this 2 files: 
+  1. `BeBi_(Beli_Bijak).ipynb` , which contain the whole process of developing the hybrid recommender system model
+  2. `Deployment_for_CC_BeBi_(Beli_Bijak).ipynb` , which contain the process of deploying the model and getting the results from the hybrid model
+
 <br>
 
 <a name="pricing"></a>
