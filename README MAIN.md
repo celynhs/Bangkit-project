@@ -277,9 +277,6 @@ The **BeBi Repository** consisted of:
 
   The folder contains ...
   
-  branch is the branch for machine learning development. It is written in Python, and it uses most basic libraries such as Pandas, NumPy, Sci-Kit Learn, and TensorFlow. Full documentation of the Machine Learning project with steps to make the model is clearly explained in the readme.md file of the Machine Learning development branch, along with the pipeline testing of each model.
-
-  See the full documentation and the model development process from scratch [here](https://github.com/Yousei-kun/StarWord-NLP-FeedbackValidator/tree/ml-development).
 
 - **Machine-Learning folder** (ml model development)
 
