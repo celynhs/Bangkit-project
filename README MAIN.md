@@ -273,7 +273,7 @@ The **BeBi Repository** consisted of:
 
   See the full documentation and the routings configuration, as well as their input and output [here](https://github.com/Yousei-kun/StarWord-NLP-FeedbackValidator/tree/cc-development). 
 
-- **Mobile-Development folder* (mobile app development)
+- **Mobile-Development folder** (mobile app development)
 
   The folder contains ...
   
