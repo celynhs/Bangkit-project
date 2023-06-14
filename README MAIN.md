@@ -263,23 +263,27 @@ As the development has finished, these are the points conducted from the plan & 
 
 ## 5. Repository & Branch
 
-The **BeBi Repository** is divided into **3 branches** (including master). Below is the explanation:
+The **BeBi Repository** consisted of:
 
-- **API Development Branch** (cc-development)
+- **Cloud-Computing folder** (cc api development)
 
-  The cc-development branch is the branch for back-end (dedicated for ONLY API) development. It is written in Python by using the flask and flask restful framework.
+  The folder has ... 
+  
+  is the branch for back-end (dedicated for ONLY API) development. It is written in Python by using the flask and flask restful framework.
 
   See the full documentation and the routings configuration, as well as their input and output [here](https://github.com/Yousei-kun/StarWord-NLP-FeedbackValidator/tree/cc-development). 
 
-- **Machine Learning Development Branch** (ml-development)
+- **Mobile-Development folder* (mobile app development)
 
-  The ML branch is the branch for machine learning development. It is written in Python, and it uses most basic libraries such as Pandas, NumPy, Sci-Kit Learn, and TensorFlow. Full documentation of the Machine Learning project with steps to make the model is clearly explained in the readme.md file of the Machine Learning development branch, along with the pipeline testing of each model.
+  The folder contains ...
+  
+  branch is the branch for machine learning development. It is written in Python, and it uses most basic libraries such as Pandas, NumPy, Sci-Kit Learn, and TensorFlow. Full documentation of the Machine Learning project with steps to make the model is clearly explained in the readme.md file of the Machine Learning development branch, along with the pipeline testing of each model.
 
   See the full documentation and the model development process from scratch [here](https://github.com/Yousei-kun/StarWord-NLP-FeedbackValidator/tree/ml-development).
 
-- **Main Branch** (main)
+- **Machine-Learning folder** (ml model development)
 
-  The Main branch is used as the integration branch of CC-development and ML-development. The plan is to use the Flask framework to build and integrate the website and machine learning model as a whole website. In the main branch lies the front-end website which only uses monolithic Flask to consume the API made from the cc-development branch. 
+  The folder has python notebook file which contain the code for developing the hybrid recommender system from collaborative filtering and content based filtering models. It has a .py file which contain the code for  ML model deployment (API endpoint for giving the recommendations). It also contain 2 model files (.h5 format) that has been downloaded from the python notebook, clean dataset of products and transactions that is used for the training, and requirement.txt which contain all the packages and its required version to run the model.    
 
 <br>
 
