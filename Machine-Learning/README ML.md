@@ -9,7 +9,7 @@ To create the recommender system we create 2 models, which are collaborative fil
 
 This repository mainly consists of 2 files:
 1. `BeBi_(Beli_Bijak).ipynb` , which contain the whole process of developing the hybrid recommender system model
-3. `deployment_bebi_(beli_bijak).py` , which contain the process of deploying the model and getting the results from the hybrid model
+2. `deployment_bebi_(beli_bijak).py` , which contain the process of deploying the model and getting the results from the hybrid model
 
 ## 1. BeBi_(Beli_Bijak).ipynb
 ### A. Data Exploratory 
