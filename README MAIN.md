@@ -6,15 +6,11 @@
 1. [About BeBi](#about)
    1. [Background](#background)
    2. [Goal & Aim](#goal)
-   3. [How to Download and Host](#downloadandhost)
-      1. [Run BeBi recommender system on local](#local)
-      2. [Deploy on Google Cloud Platform](#gcp)
-      3. [Deploy on Heroku](#heroku)
-   4. [Plans & Realization](#plans)
-   5. [Repository & Branch](#repo)
-   6. [Google Cloud Tools and Monthly Pricing](#pricing)
-   7. [Bibliography](#bibliography)
-   8. [Contributing Developers](#dev)
+   3. [Plans & Realization](#plans)
+   4. [Repository & Branch](#repo)
+   5. [Google Cloud Tools and Monthly Pricing](#pricing)
+   6. [Bibliography](#bibliography)
+   7. [Contributing Developers](#dev)
 
 <br>
 <a name="about"></a>
@@ -46,166 +42,8 @@ We also consider that for busy people like working moms , grocery shopping might
 
 <a name="downloadandhost"></a>
 
-## 3. How to Download and Host
 
-This section contains the steps to run StarWord Web on local device and environment, then how to deploy it to Google Cloud Platform or Heroku. Those three steps will be explained with several short codes below.
-
-<br>
-
-<a name="local"></a>
-
-### A. Run StarWord Web on Local
-
-#### 	1. Clone this repository
-
-```
-https://github.com/Yousei-kun/StarWord-NLP-FeedbackValidator.git
-```
-
-#### 	2. Go to the main branch and install virtualenv
-
-```
-pip install virtualenv
-```
-
-#### 	3. Create and name a virtual environment
-
-```
-python -m venv <name of environment>
-```
-
-#### 	4. Activate the environment
-
-```
-<name of environment>\Scripts\activate
-```
-
-#### 	5. Install all required packages for this Web
-
-```
-pip install -r requirements.txt
-```
-
-#### 	6. Add debug mode to keep reloading server (only for development)
-
-```
-if __name__ == "__main__":
-  app.run(debug=True)
-```
-
-#### 	7. Run the Web server
-
-```
-python run.py
-```
-
-Now, your own StarWord website is ready to serve!
-
-
-
-<br>
-
-<a name="gcp"></a>
-
-### B. Deploy on Google Cloud Platform
-
-#### 	1. Create a project in GCP and enable billing for this project
-
-#### 	2. Enable the Cloud Run Admin API. Open the GCP Console then on the left in the sidebar menu select > APIs &
-
-#### 		Services > Library
-
-#### 	3. Activate Cloud Shell then clone this repository
-
-```
-https://github.com/Yousei-kun/StarWord-NLP-FeedbackValidator.git
-```
-
-#### 	4. Go to the main branch and create Dockerfile below
-
-```
-# Use the official lightweight Python image.
-# https://hub.docker.com/_/python
-FROM python:3.8
-
-# Allow statements and log messages to immediately appear in the Knative logs
-ENV PYTHONUNBUFFERED True
-
-# Copy local code to the container image.
-ENV APP_HOME /app
-WORKDIR $APP_HOME
-COPY . ./
-
-# Install production dependencies.
-RUN pip install -r requirements.txt
-
-# Run the web service on container startup. Here we use the gunicorn
-# webserver, with one worker process and 8 threads.
-# For environments with multiple CPU cores, increase the number of workers
-# to be equal to the cores available.
-# Timeout is set to 0 to disable the timeouts of the workers to allow Cloud Run to handle instance scaling.
-CMD exec gunicorn --bind :$PORT --workers 1 --threads 8 --timeout 0 run:app
-```
-
-#### 	5. Open the Editor Console then on the bottom click Cloud Code
-
-#### 	6. Deploy to Cloud Run
-
-<br>
-
-<a name="heroku"></a>
-
-### C. Deploy on Heroku
-
-#### 	1. Create an account on Heroku
-
-#### 	2. Install the Heroku CLI
-
-#### 	3. Clone this repository
-
-```
-https://github.com/Yousei-kun/StarWord-NLP-FeedbackValidator.git
-```
-
-#### 	4. Go to the main branch
-
-#### 	5. Login to the Heroku CLI
-
-```
-$ heroku login -i
-```
-
-#### 	6. Create Heroku apps from the CLI
-
-```
-$ heroku create <name of apps>
-```
-
-#### 	7. Create a Procfile file
-
-```
-web: gunicorn run:app
-```
-
-#### 	8. Initialize a Git repository in a new or existing directory
-
-```
-$ git init
-$ heroku git:remote -a <name of apps>
-```
-
-#### 	9. Commit the code to the repository and deploy it to Heroku using Git
-
-```
-$ git add .
-$ git commit -am "make it better"
-$ git push heroku master
-```
-
-<br>
-
-<a name="plans"></a>
-## 4. Plans & Realization
+## 3. Plans & Realization
 
 The development plan of this project can be seen in the Gantt Chart in the picture provided or [for more information can click here to view](https://bit.ly/C22FV01-ProjectSchedule)
 <img src="https://github.com/Yousei-kun/StarWord-NLP-FeedbackValidator/blob/ml-development/image/gann_chart.png" width="950" />
@@ -256,7 +94,7 @@ As the development has finished, these are the points conducted from the plan & 
 
 <a name="repo"></a>
 
-## 5. Repository & Branch
+## 4. Repository & Branch
 
 The **BeBi Repository** consisted of:
 
@@ -266,7 +104,7 @@ The **BeBi Repository** consisted of:
 
 - **Mobile-Development folder** (mobile app development)
 
-  The folder contains ...
+  The folder contains ... (SISA PUNYA MD)
   
 
 - **Machine-Learning folder** (ml model development)
@@ -282,7 +120,7 @@ The **BeBi Repository** consisted of:
 
 <a name="pricing"></a>
 
-## 6. Google Cloud Tools and Monthly Pricing
+## 5. Google Cloud Tools and Monthly Pricing
 
 Below are the tools used for deployment, and its detail of monthly pricing.
 
@@ -297,7 +135,7 @@ Below are the tools used for deployment, and its detail of monthly pricing.
 
 <a name="bibliography"></a>
 
-## 7. Bibliography
+## 6. Bibliography
 
 ### A. Framework, Library, and external repository/API used:
 
@@ -310,12 +148,13 @@ Below are the tools used for deployment, and its detail of monthly pricing.
 - [Express](https://devdocs.io/express/)
 - [Cloud Run](https://cloud.google.com/run/docs)
 - [Cloud SQL](https://cloud.google.com/sql/docs)
+- sisa punya md
 
 <br>
 
 <a name="dev"></a>
 
-## 8. Contributing developers
+## 7. Contributing developers
 
 **Bangkit 2023 | Product Based-Capstone| C23-PS069 Team Members**:
 
