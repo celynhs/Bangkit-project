@@ -234,28 +234,23 @@ As the development has finished, these are the points conducted from the plan & 
 
 3. Third week
 
-   a. Combining 2 recommender system & process the result of both to create a hybrid recommender system which generate top products recommendations 
+   a. Combining 2 recommender systems & process the result of both to create a hybrid recommender system which generates top products recommendations 
    
    b. Deploying the ML model & Create APIs 
-   
-   c. 
   
 4. Fourth week
 
    a. API testing
   
-   b. Mobile Application Development
-  
-   c. 
-  
+   b. Integrating API with Mobile Application
 
 5. Fifth week 
 
    a. Application Integration
   
-   b. Make project brief and documentations
+   b. Make project brief and documentation
   
-   c. Prepare go-to market proposal and project presentation.
+   c. Prepare go-to-market proposal and project presentation.
 
 <br>
 
@@ -267,11 +262,7 @@ The **BeBi Repository** consisted of:
 
 - **Cloud-Computing folder** (cc api development)
 
-  The folder has ... 
-  
-  is the branch for back-end (dedicated for ONLY API) development. It is written in Python by using the flask and flask restful framework.
-
-  See the full documentation and the routings configuration, as well as their input and output [here](https://github.com/Yousei-kun/StarWord-NLP-FeedbackValidator/tree/cc-development). 
+  The folder contain routes/ directory contains files that define the routes for different endpoints in your application. For example, the index.js file may define routes for the main application, while users.js may define routes for user-related operations like login, registration, etc. The controllers/ directory contains files that define the controllers for handling the logic of each route. The controllers interact with the models to retrieve or manipulate data and send appropriate responses to the client. The models/ directory contains files that define the data models for your application. These models typically represent the entities in your system and provide methods for interacting with the underlying data store (e.g., a database). The views/ directory is where you can store your application's view templates. These templates are typically rendered by the controllers and sent as responses to the client. The app.js file is the main entry point of your application. It's where you initialize the Express app, set up middleware, configure routes, and start the server.
 
 - **Mobile-Development folder** (mobile app development)
 
@@ -295,12 +286,11 @@ The **BeBi Repository** consisted of:
 
 Below are the tools used for deployment, and its detail of monthly pricing.
 
-| Name              | Detail                                                       | Type                              | Monthly Pricing Est. |
-| ----------------- | ------------------------------------------------------------ | --------------------------------- | -------------------- |
-| Google Cloud SQL  | Database-related functions to create, read, update, delete data | db-standard-1. 10 GiB SSD storage | $42                  |
-| Google App Engine | Hosting the website                                          | F2                                | $133                 |
-| Google Cloud Run  | Handle the request-related  from users                       | 0.25 GiB Memory, per 10k requests | $5                   |
 
+| Name             | Detail                                                       | Type                              | Monthly Pricing Est. |
+| ---------------- | ------------------------------------------------------------ | --------------------------------- | -------------------- |
+| Google Cloud SQL | Database-related functions to create, read, update, delete data | db-standard-1. 10 GiB SSD storage | $104                 |
+| Google Cloud Run | Handle the request-related  from users                       | 0.25 GiB Memory, per 10k requests | $20                   |
 
 
 <br>
@@ -316,7 +306,10 @@ Below are the tools used for deployment, and its detail of monthly pricing.
 - [Pandas](https://pandas.pydata.org/docs/)
 - [NumPy](https://numpy.org/doc/stable/)
 - [Scikit-Learn](https://scikit-learn.org/stable/)
-- []
+- [Node.js](https://nodejs.org/en/docs)
+- [Express](https://devdocs.io/express/)
+- [Cloud Run](https://cloud.google.com/run/docs)
+- [Cloud SQL](https://cloud.google.com/sql/docs)
 
 <br>
 
