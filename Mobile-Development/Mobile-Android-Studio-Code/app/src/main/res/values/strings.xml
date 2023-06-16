@@ -1,0 +1,47 @@
+<resources>
+    <string name="app_name">BeliBijak</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="title_home">Home</string>
+    <string name="title_cart">Order</string>
+    <string name="title_profile">Profile</string>
+    <string name="tx_login">Login</string>
+    <string name="tx_register">Register</string>
+    <string name="tx_welcome">Welcome</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="forgot_password">Forgot Password</string>
+    <string name="add_item">add Item</string>
+    <string name="title_activity_detail">DetailActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="deliver">Deliver</string>
+    <string name="full_name">Full Name</string>
+    <string name="requir">Required</string>
+    <string name="rp_2000">Rp.2000</string>
+    <string name="budget">Budget</string>
+    <string name="back">Back</string>
+    <string name="title_activity_splash">SplashActivity</string>
+    <string name="close">close</string>
+    <string name="order_summary">Order Summary</string>
+    <string name="subtotal">Subtotal</string>
+    <string name="bag_fee">Bag Fee</string>
+    <string name="delivery_tax">Delivery tax</string>
+    <string name="total">Total</string>
+    <string name="budget_limit">Budget Limit</string>
+    <string name="leftover_budget">Leftover Budget</string>
+    <string name="go_to_checkout">Go To Checkout</string>
+    <string name="post_code">Post Code</string>
+    <string name="city">City</string>
+    <string name="budgetsubtext">Set your limit budget wisely</string>
+    <string name="limitinfo">What is <a href="#">Budget Limit </a>?</string>
+    <string name="i_agree_to_the_terms_and_privacy_policy">I agree to the <a href="#">terms</a> and <a href="#">privacy policy</a></string>
+    <string name="your_order">Your Order</string>
+    <string name="address">Address</string>
+</resources>
