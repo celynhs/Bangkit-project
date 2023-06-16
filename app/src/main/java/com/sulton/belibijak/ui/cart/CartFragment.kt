@@ -5,22 +5,32 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
-import com.sulton.belibijak.R
+import androidx.lifecycle.lifecycleScope
+import com.bumptech.glide.Glide
+import com.sulton.belibijak.data.local.UserPreference
+import com.sulton.belibijak.data.local.dataOrder
 import com.sulton.belibijak.databinding.FragmentCartBinding
-import com.sulton.belibijak.databinding.FragmentHomeBinding
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.launch
 
 class CartFragment : Fragment() {
     private var _binding: FragmentCartBinding? = null
     private val binding get() = _binding!!
+    private var order: dataOrder? = null
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        if (arguments !=null){
+            arguments?.let {
+                order = it.getParcelable("order")
+            }
+        }
 
-    private lateinit var viewModel: CartViewModel
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-
 
         _binding = FragmentCartBinding.inflate(inflater, container, false)
         return binding.root
@@ -28,34 +38,56 @@ class CartFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        if(arguments != null){
+        val price = order?.rp?.toDouble()
+        val formatData = String.format("%.2f", price)
+        val pricetv = "Rp. $formatData"
 
-            val bundle = arguments
-            // Extract the data using appropriate keys
-            val value1 = bundle?.getString("paket")
-            val value2 = bundle?.getString("price")
-            val value3 = bundle?.getString("pcs")
+        val tax : Double = 30000.00
+        val total = java.lang.StringBuilder()
+        total.append("Rp. ")
+        val totald = price?.plus(tax)
+        val formatTotal = String.format("%.2f", totald)
+        total.append(formatTotal)
 
-            binding.tvPrice.text = value2
-            binding.tvPaketName.text = value1
-            binding.tvPcs.text = value3
+        val pref = UserPreference.getInstance(requireContext())
 
+        setSummary(pref, totald)
+
+        with(binding){
+            Glide.with(this@CartFragment)
+                .load(order?.img)
+                .centerCrop()
+                .into(ivProduk)
+
+           tvPrice.text = pricetv
+           tvPaketName.text = order?.nama
+            tvPcs.text = order?.pcs
+            tvSubtotal.text = pricetv
+            tvBagFee.text="Rp. 0"
+            tvTax.text = "Rp. $tax"
+            tvTotalR.text = total
         }
     }
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
-    companion object {
-        fun newInstance(paket: String, price: String, pcs: String): CartFragment {
-            val fragment = CartFragment()
-            val bundle = Bundle().apply {
-                putString("paket", paket)
-                putString("price", price)
-                putString("pcs", pcs)
+    fun setSummary(userPreference: UserPreference, totald: Double?){
+        lifecycleScope.launch {
+            val budget = java.lang.StringBuilder()
+            val bAwal = userPreference.getBudget().first()
+            val formatData = String.format("%.2f", bAwal)
+            budget.append("Rp. ")
+            budget.append(formatData)
+            binding.tvBudgetLimit.text = budget
+            var orderTotal = 0.0
+            if (totald != null) {
+                orderTotal = totald
             }
-            fragment.arguments = bundle
-            return fragment
+            val sisa = String.format("%.2f", bAwal-orderTotal)
+            val last = "Rp. $sisa"
+            binding.tvBudgetEnd.text = last
         }
+
     }
 }

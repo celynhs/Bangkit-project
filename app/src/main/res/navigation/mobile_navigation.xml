@@ -15,7 +15,11 @@
         android:id="@+id/navigation_cart"
         android:name="com.sulton.belibijak.ui.cart.CartFragment"
         android:label="@string/title_cart"
-        tools:layout="@layout/fragment_cart" />
+        tools:layout="@layout/fragment_cart" >
+        <argument
+            android:name="order"
+            app:argType="com.sulton.belibijak.data.local.dataOrder" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_deliver"

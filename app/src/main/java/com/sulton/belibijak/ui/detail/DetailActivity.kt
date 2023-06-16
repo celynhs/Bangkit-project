@@ -2,7 +2,6 @@ package com.sulton.belibijak.ui.detail
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -16,7 +15,6 @@ import com.sulton.belibijak.R
 import com.sulton.belibijak.data.local.UserPreference
 import com.sulton.belibijak.databinding.ActivityDetailBinding
 import com.sulton.belibijak.ui.auth.LoginViewModel
-import com.sulton.belibijak.ui.cart.CartFragment
 import com.sulton.belibijak.ui.home.RecommendViewModel
 import com.sulton.belibijak.ui.home.StoryModelFactory
 import kotlinx.coroutines.flow.first
@@ -38,15 +36,7 @@ class DetailActivity : AppCompatActivity() {
         binding.closeButton.setOnClickListener {
             super.onBackPressed()
         }
-        binding.goCheckOut.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
-            intent.putExtra("cart", R.id.navigation_cart)
-            intent.putExtra("Title", binding.tvDetailTittle.text.toString())
-            intent.putExtra("Price", binding.textPriceDetail.text.toString())
-            intent.putExtra("Pcs", binding.textPcsDetail.text.toString())
 
-            startActivity(intent)
-        }
 
         val pref = UserPreference.getInstance(this)
         binding.recyclerView2.layoutManager = LinearLayoutManager(this)
@@ -59,14 +49,29 @@ class DetailActivity : AppCompatActivity() {
                 adapter.removeAt(viewHolder.adapterPosition)
                 val pcsl = "${adapter.itemCount} Pcs"
                 binding.textPcsDetail.text = pcsl
-                val fromatPrice = String.format("%.2f",adapter.sumPrice())
-                val Price = "Rp. $fromatPrice"
+                val total = String.format("%.2f",adapter.sumPrice())
+                val Price = "Rp. $total"
                 binding.textPriceDetail.text = Price
             }
         }
         val itemTouchHelper = ItemTouchHelper(swipeHandler)
         itemTouchHelper.attachToRecyclerView(binding.recyclerView2)
 
+
+        binding.goCheckOut.setOnClickListener {
+
+            val imgurl = intent.getStringExtra("Image")
+            val intent = Intent(this, MainActivity::class.java)
+
+            val adapter = binding.recyclerView2.adapter as DetailAdapter
+
+            intent.putExtra("cart", R.id.navigation_cart)
+            intent.putExtra("Title", binding.tvDetailTittle.text.toString())
+            intent.putExtra("Price", adapter.sumPrice().toString())
+            intent.putExtra("Pcs", binding.textPcsDetail.text.toString())
+            intent.putExtra("Img", imgurl)
+            startActivity(intent)
+        }
     }
     fun getDataIntent(){
         val imgurl = intent.getStringExtra("Image")
@@ -90,7 +95,8 @@ class DetailActivity : AppCompatActivity() {
                 adapter = DetailAdapter(it!!.toMutableList())
                 binding.recyclerView2.adapter = adapter
                 val pcs = "${it.size} Pcs"
-                val rp  = "Rp. ${adapter.sumPrice()}"
+                val fromatPrice = String.format("%.2f",adapter.sumPrice())
+                val rp  = "Rp. $fromatPrice"
                 binding.textPcsDetail.text = pcs
                 binding.textPriceDetail.text = rp
             }

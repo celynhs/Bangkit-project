@@ -261,7 +261,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
-                android:id="@+id/imageView6"
+                android:id="@+id/ivProduk"
                 android:layout_width="120dp"
                 android:layout_height="120dp"
                 android:layout_marginStart="24dp"
@@ -281,7 +281,7 @@
                 android:textColor="@color/black"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                app:layout_constraintStart_toEndOf="@+id/imageView6"
+                app:layout_constraintStart_toEndOf="@+id/ivProduk"
                 app:layout_constraintTop_toBottomOf="@+id/view" />
 
             <TextView
@@ -293,8 +293,8 @@
                 android:text="6pcs"
                 android:textColor="@color/black"
                 android:textSize="12sp"
-                app:layout_constraintBottom_toBottomOf="@+id/imageView6"
-                app:layout_constraintStart_toEndOf="@+id/imageView6" />
+                app:layout_constraintBottom_toBottomOf="@+id/ivProduk"
+                app:layout_constraintStart_toEndOf="@+id/ivProduk" />
 
             <TextView
                 android:id="@+id/tvPaketName"
@@ -307,7 +307,7 @@
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toTopOf="@+id/tvPcs"
-                app:layout_constraintStart_toEndOf="@+id/imageView6" />
+                app:layout_constraintStart_toEndOf="@+id/ivProduk" />
 
 
             <View
@@ -315,7 +315,7 @@
                 android:layout_width="0dp"
                 android:layout_height="1dp"
                 android:background="#37000000"
-                app:layout_constraintBottom_toTopOf="@+id/imageView6"
+                app:layout_constraintBottom_toTopOf="@+id/ivProduk"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvEstimate" />

@@ -1,6 +1,8 @@
 package com.sulton.belibijak.ui.home
 
 
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.text.Html
@@ -77,10 +79,25 @@ class HomeFragment : Fragment() {
         })
 
         binding.ivUser.setOnClickListener {
-          logViewModel.logOut()
-            val intent = Intent(requireContext(), AuthActivity::class.java)
-            startActivity(intent)
-            requireActivity().finish()
+            val alertDialog = AlertDialog.Builder(requireContext())
+            .setTitle("Logout")
+            .setMessage("Are you sure you want to logout?")
+            .setPositiveButton("Yes") { dialog: DialogInterface, which: Int ->
+                // Perform logout action
+                logViewModel.logOut()
+                val intent = Intent(requireContext(), AuthActivity::class.java)
+                startActivity(intent)
+                requireActivity().finish()
+
+            }
+            .setNegativeButton("No") { dialog: DialogInterface, which: Int ->
+                // Do nothing, dismiss the dialog
+                dialog.dismiss()
+            }
+            .create()
+
+            alertDialog.show()
+
         }
         with(binding){
             Glide.with(this@HomeFragment)

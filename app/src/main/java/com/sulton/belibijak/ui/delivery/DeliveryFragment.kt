@@ -14,8 +14,6 @@ class DeliveryFragment : Fragment() {
         fun newInstance() = DeliveryFragment()
     }
 
-    private lateinit var viewModel: DeliveryViewModel
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -25,7 +23,6 @@ class DeliveryFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(DeliveryViewModel::class.java)
         // TODO: Use the ViewModel
     }
 
