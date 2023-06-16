@@ -31,7 +31,9 @@ class LoginActivity : AppCompatActivity() {
 
 
         binding.btnBack.setOnClickListener {
-            super.onBackPressed()
+            finish()
+            val intent = Intent(this, AuthActivity::class.java)
+            startActivity(intent)
         }
         binding.login.setOnClickListener {
             loginUser()
@@ -41,7 +43,7 @@ class LoginActivity : AppCompatActivity() {
 
         }
         viewModel.loginResult.observe(this) { message ->
-            Toast.makeText(this, "Login $message", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Username/ Password Salah", Toast.LENGTH_SHORT).show()
             if (message.equals("Success")) {
 
                 val intent = Intent(this, MainActivity::class.java)

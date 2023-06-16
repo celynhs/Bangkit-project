@@ -15,9 +15,11 @@ class AuthActivity : AppCompatActivity() {
         supportActionBar?.hide()
         binding.apply {
             authBtnLogin.setOnClickListener {
+                finish()
                 startActivity(Intent(this@AuthActivity, LoginActivity::class.java))
             }
             authBtnRegister.setOnClickListener {
+                finish()
                 startActivity(Intent(this@AuthActivity, RegisterActivity::class.java))
 
             }

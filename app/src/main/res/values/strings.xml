@@ -37,4 +37,10 @@
     <string name="budget_limit">Budget Limit</string>
     <string name="leftover_budget">Leftover Budget</string>
     <string name="go_to_checkout">Go To Checkout</string>
+    <string name="post_code">Post Code</string>
+    <string name="city">City</string>
+    <string name="budgetsubtext">Set your limit budget wisely</string>
+    <string name="limitinfo">What is <a href="#">Budget Limit </a>?</string>
+    <string name="i_agree_to_the_terms_and_privacy_policy">I agree to the <a href="#">terms</a> and <a href="#">privacy policy</a></string>
+    <string name="your_order">Your Order</string>
 </resources>

@@ -24,8 +24,6 @@
     <style name="Theme.BeliBijak.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
     <style name="CustomCardViewStyle" parent="Widget.MaterialComponents.CardView">
-
-        <item name="cardElevation">8dp</item>
         <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay_card_custom_corners</item>
     </style>
 

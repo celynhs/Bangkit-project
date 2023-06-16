@@ -5,7 +5,7 @@ import android.util.Log
 import androidx.lifecycle.*
 import com.sulton.belibijak.data.local.UserPreference
 import com.sulton.belibijak.data.remote.ApiConfig
-import com.sulton.belibijak.data.remote.LogResponse
+import com.sulton.belibijak.data.remote.AuthResponse
 import com.sulton.belibijak.data.remote.SignIn
 import kotlinx.coroutines.launch
 import retrofit2.Call
@@ -31,23 +31,28 @@ class LoginViewModel(private  val pref : UserPreference) : ViewModel() {
 
     fun getToken(): LiveData<String> = pref.getToken().asLiveData()
 
+    fun getBudget(): LiveData<Double> = pref.getBudget().asLiveData()
+
     fun postLogin(signIn: SignIn) {
         _isLoading.value = true
-        val client = ApiConfig.getLoginService().reqLogin(signIn)
-        client.enqueue(object : Callback<LogResponse> {
-            override fun onResponse(call: Call<LogResponse>, response: Response<LogResponse>) {
+        val client = ApiConfig.getLoginService().signIn(signIn)
+        client.enqueue(object : Callback<AuthResponse> {
+            override fun onResponse(call: Call<AuthResponse>, response: Response<AuthResponse>) {
 
                 if (response.isSuccessful) {
-                    Log.d("ListUser", response.body()?.loginResult.toString())
+                    Log.d("ListUser", response.body().toString())
+                    val responseItem = response.body()
                     _loginResult.value = "Success"
                     viewModelScope.launch {
                         pref.setLoginStatus(
                             true,
-                            response.body()?.loginResult?.name.toString(),
-                            response.body()?.loginResult?.userId.toString(),
-                            response.body()?.loginResult?.token.toString()
+                            response.body()?.name.toString(),
+                            response.body()?.email.toString(),
+                            response.body()?.token.toString(),
+                            responseItem?.address.toString(),
+                            responseItem?.budget!!.toDouble()
                         )
-                    }
+                                   }
 
                 } else {
                     _loginResult.value = "Gagal"
@@ -56,7 +61,7 @@ class LoginViewModel(private  val pref : UserPreference) : ViewModel() {
                 _isLoading.value = false
             }
 
-            override fun onFailure(call: Call<LogResponse>, t: Throwable) {
+            override fun onFailure(call: Call<AuthResponse>, t: Throwable) {
                 _loginResult.value = "Gagal"
                 _isLoading.value = false
                 Log.e(ContentValues.TAG, "Fail: ${t.message.toString()}")
@@ -65,6 +70,7 @@ class LoginViewModel(private  val pref : UserPreference) : ViewModel() {
     }
 
 }
+
 class ViewModelFactory(private val pref: UserPreference) :
     ViewModelProvider.NewInstanceFactory() {
 

@@ -7,26 +7,55 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.sulton.belibijak.R
+import com.sulton.belibijak.databinding.FragmentCartBinding
+import com.sulton.belibijak.databinding.FragmentHomeBinding
 
 class CartFragment : Fragment() {
-
-    companion object {
-        fun newInstance() = CartFragment()
-    }
+    private var _binding: FragmentCartBinding? = null
+    private val binding get() = _binding!!
 
     private lateinit var viewModel: CartViewModel
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_cart, container, false)
+
+
+
+        _binding = FragmentCartBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(CartViewModel::class.java)
-        // TODO: Use the ViewModel
-    }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        if(arguments != null){
 
+            val bundle = arguments
+            // Extract the data using appropriate keys
+            val value1 = bundle?.getString("paket")
+            val value2 = bundle?.getString("price")
+            val value3 = bundle?.getString("pcs")
+
+            binding.tvPrice.text = value2
+            binding.tvPaketName.text = value1
+            binding.tvPcs.text = value3
+
+        }
+    }
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+    companion object {
+        fun newInstance(paket: String, price: String, pcs: String): CartFragment {
+            val fragment = CartFragment()
+            val bundle = Bundle().apply {
+                putString("paket", paket)
+                putString("price", price)
+                putString("pcs", pcs)
+            }
+            fragment.arguments = bundle
+            return fragment
+        }
+    }
 }

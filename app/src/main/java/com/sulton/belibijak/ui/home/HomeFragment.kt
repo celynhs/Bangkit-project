@@ -4,37 +4,42 @@ package com.sulton.belibijak.ui.home
 import android.content.Intent
 import android.os.Bundle
 import android.text.Html
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentActivity
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
 import com.sulton.belibijak.R
+import com.sulton.belibijak.data.local.TestPromo
 import com.sulton.belibijak.data.local.UserPreference
-import com.sulton.belibijak.data.slideData
 import com.sulton.belibijak.databinding.FragmentHomeBinding
 import com.sulton.belibijak.ui.auth.AuthActivity
-import com.sulton.belibijak.ui.auth.LoginActivity
 import com.sulton.belibijak.ui.auth.LoginViewModel
 import com.sulton.belibijak.ui.auth.ViewModelFactory
-import kotlin.concurrent.fixedRateTimer
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.launch
+
 
 class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
-    private lateinit var viewModel: HomeViewModel
     private lateinit var logViewModel: LoginViewModel
     private lateinit var adapter: ImageSliderAdapter
     private lateinit var rAdapter: ListRecommendedAdapter
-    private val list = ArrayList<slideData>()
+    private val list = TestPromo.carouselHome
     private lateinit var dots: ArrayList<TextView>
+    private val recViewModel: RecommendViewModel by viewModels {
+        StoryModelFactory(requireContext())
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -47,20 +52,18 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+
         _binding = FragmentHomeBinding.bind(view)
-
         val pref = UserPreference.getInstance(requireContext())
-        logViewModel = ViewModelProvider(this, ViewModelFactory(pref))[LoginViewModel::class.java]
 
-        viewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory())[HomeViewModel::class.java]
-        viewModel.searchUser("Sulton")
+        logViewModel = ViewModelProvider(this, ViewModelFactory(pref))[LoginViewModel::class.java]
+        setName(pref)
+
         binding.apply {
             rvRecommended.setHasFixedSize(true)
             rvRecommended.layoutManager = GridLayoutManager(requireActivity(), 2)
         }
-        addDataList()
-        addDataCarousel()
-
         adapter = ImageSliderAdapter(list)
         binding.viewPager2.adapter = adapter
         dots = ArrayList()
@@ -79,17 +82,27 @@ class HomeFragment : Fragment() {
             startActivity(intent)
             requireActivity().finish()
         }
-
         with(binding){
             Glide.with(this@HomeFragment)
                 .load(R.drawable.gojokun)
                 .circleCrop()
                 .into(ivUser)
         }
+
+        getRecommend(pref)
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+    }
+    fun setName(pref : UserPreference){
+        viewLifecycleOwner.lifecycleScope.launch{
+            val name = "Hi, ${pref.getName().first()}"
+          binding.tvWelcomeHome.text = name
+        }
+    }
     private fun selectedSlide(position: Int) {
-    for (i in 0 until list.size){
+    for (i in list.indices){
         if (i == position)
             dots[i].setTextColor(ContextCompat.getColor(requireContext(), R.color.color_schema1))
         else
@@ -106,24 +119,25 @@ class HomeFragment : Fragment() {
             binding.dotsIndicator.addView(dots[i])
         }
     }
-    private fun addDataCarousel(){
-        list.add(
-            slideData("Fresh Product","Always provide best quality ingredients","https://drive.google.com/uc?export=view&id=1KH779VrqcsAKzynF-Zx2UIIDQtT7_3u8")
-        )
-        list.add(
-            slideData("Best Sale","","")
-        )
-        list.add(
-            slideData("Good fo Health","","")
-        )
-    }
-    private fun addDataList(){
-        viewModel.listUsers.observe(viewLifecycleOwner){
-            if (it!=null){
-                rAdapter = ListRecommendedAdapter(it)
-                binding.rvRecommended.adapter = rAdapter
-            }
+
+
+    private fun getRecommend(pref: UserPreference){
+        var bud : Double? = 1000.0
+        viewLifecycleOwner.lifecycleScope.launch{
+            bud = pref.getBudget().first()
         }
+        recViewModel.getRecommendItem(bud?: 0.0)
+        recViewModel.loading.observe(viewLifecycleOwner){
+            showLoading(it)
+        }
+        recViewModel.recommendItem.observe(viewLifecycleOwner) {
+            rAdapter = ListRecommendedAdapter(it)
+            binding.rvRecommended.adapter = rAdapter
+        }
+
+    }
+    private fun showLoading(isLoading: Boolean) {
+        binding.progressBar3.visibility = if (isLoading) View.VISIBLE else View.GONE
     }
     override fun onDestroyView() {
         super.onDestroyView()
