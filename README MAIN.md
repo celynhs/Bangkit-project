@@ -104,7 +104,7 @@ The **BeBi Repository** consisted of:
 
 - **Mobile-Development folder** (mobile app development)
 
-  The folder contain design ui/ux has been created using Figma. This design will be a reference for making the appearance and flow mechanism in making applications. Creating the application using Retrofit library.
+  The folder contain design ui/ux has been created using Figma. This design will be a reference for making the appearance and flow mechanism in making applications. The application contain using Retrofit Library used to connecting data from android to internet and Glide library used to display images from the internet/URL.
   
 
 - **Machine-Learning folder** (ml model development)
