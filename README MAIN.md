@@ -104,7 +104,7 @@ The **BeBi Repository** consisted of:
 
 - **Mobile-Development folder** (mobile app development)
 
-  The folder contains ... (SISA PUNYA MD)
+  The folder contain design ui/ux has been created using Figma. This design will be a reference for making the appearance and flow mechanism in making applications. 
   
 
 - **Machine-Learning folder** (ml model development)
