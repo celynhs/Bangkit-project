@@ -148,7 +148,8 @@ Below are the tools used for deployment, and its detail of monthly pricing.
 - [Express](https://devdocs.io/express/)
 - [Cloud Run](https://cloud.google.com/run/docs)
 - [Cloud SQL](https://cloud.google.com/sql/docs)
-- sisa punya md
+- [Retrofit](https://square.github.io/retrofit/)
+- [Glide](https://github.com/bumptech/glide)
 
 <br>
 
