@@ -71,6 +71,9 @@ You can access the deployed API using the URL provided by Cloud Run. Make sure t
 ## Contributing
 If you'd like to contribute to the BeBi-API project, please follow the guidelines in [CONTRIBUTING.md](CONTRIBUTING.md).
 
+## Documentation
+[API Documentation](https://documenter.getpostman.com/view/26538106/2s93shypW3)
+
 ## License
 This project is licensed under the [MIT License](LICENSE).
 
